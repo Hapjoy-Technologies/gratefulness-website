@@ -172,6 +172,7 @@ const sitemapEntries = [
   "",
   "affirmations/",
   ...allCategories.map((item) => `affirmations/${item.slug}/`),
+  "visionboard/",
   "world-gratitude-day-challenge.html",
   "embracing-myself-challenge.html",
   "remembering-with-gratitude-challenge.html",
