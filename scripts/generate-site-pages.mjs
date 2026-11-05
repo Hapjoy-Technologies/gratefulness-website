@@ -38,9 +38,9 @@ const page = ({ slug, title, description, h1, intro, body, type = "WebPage", ext
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${description}" />
   <meta property="og:url" content="${url}" />
-  <meta property="og:image" content="${origin}/images/og-gratitude.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:image" content="${origin}/images/og-gratitude-v2.jpg" />
+  <meta property="og:image:width" content="2400" />
+  <meta property="og:image:height" content="1260" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="apple-itunes-app" content="app-id=1372575227" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
