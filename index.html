@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css?v=ea58efc3" />
+    <style>
+      /* The third header link only fits beside the logo on wider screens. The footer link covers phones. */
+      @media (max-width: 560px) {
+        .header__nav-wide {
+          display: none;
+        }
+      }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -234,6 +242,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             </a>
             <nav class="header__nav" aria-label="Main navigation">
               <a href="affirmations/">Affirmations</a>
+              <a class="header__nav-wide" href="visionboard/">Vision board</a>
               <a href="https://blog.gratefulness.me/tag/inspirational-stories/">Stories</a>
             </nav>
           </div>
@@ -489,6 +498,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             </nav>
             <nav class="footer__column" aria-label="Explore">
               <h2>Explore</h2>
+              <a href="visionboard/">Free vision board maker</a>
               <a href="https://blog.gratefulness.me/tag/inspirational-stories/"
                 >Gratitude stories</a
               >
