@@ -13,3 +13,5 @@ Deployment review: the repository has GitHub Pages enabled and a CNAME of www.gr
 ## Site pages and footer
 
 `node scripts/generate-site-pages.mjs` builds `/features/`, `/pricing/`, `/download/` and `/about/`, and applies the shared footer (`scripts/site-footer.mjs`) and main navigation to the homepage and affirmation pages. Unlike the affirmation generator, it doesn't need the `gratitude-static-content` checkout.
+
+Run `generate-site-pages.mjs` after `generate-affirmation-pages.mjs`: it also applies the shared style to the affirmation pages.
