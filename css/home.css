@@ -1,0 +1,113 @@
+/* Homepage content sections. Loaded after main.css. */
+.home-eyebrow {
+  margin: 0 0 12px;
+  color: #b94464;
+  font-size: 16px;
+  font-weight: 600;
+}
+.intro__inner-content-title {
+  font-size: 50px;
+  line-height: 60px;
+}
+.home-sections {
+  position: relative;
+  z-index: 1;
+  color: #282128;
+  font-size: 17px;
+  line-height: 1.6;
+}
+.home-section {
+  padding: 48px 0;
+}
+.home-section h2 {
+  margin: 0 0 24px;
+  font-size: 32px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+.home-section h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+.home-section p {
+  margin: 0 0 16px;
+}
+.home-section a {
+  color: #b94464;
+  text-decoration: underline;
+}
+.home-grid {
+  display: grid;
+  gap: 32px;
+}
+.home-grid--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.home-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.home-panel {
+  padding: 28px;
+  background: #fffaf6;
+  border: 1px solid #eadfda;
+  border-radius: 12px;
+}
+.home-panel ul {
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style: disc;
+}
+.home-panel li {
+  margin: 0 0 6px;
+  list-style: inherit;
+}
+.home-price {
+  margin: 16px 0 0;
+  font-weight: 600;
+}
+.home-narrow > * {
+  max-width: 800px;
+}
+.home-narrow h3 {
+  margin-top: 24px;
+}
+.home-section blockquote {
+  margin: 24px 0 0;
+  padding-left: 20px;
+  border-left: 3px solid #eadfda;
+}
+.home-section blockquote p {
+  margin-bottom: 4px;
+  font-size: 20px;
+}
+.home-section blockquote footer {
+  color: #746b72;
+  font-size: 15px;
+}
+@media (max-width: 1000px) {
+  .home-grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .intro__inner-content-title {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .home-grid--four,
+  .home-grid--two {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .home-section {
+    padding: 32px 0;
+  }
+  .home-section h2 {
+    font-size: 26px;
+  }
+  .home-section .auto__container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
