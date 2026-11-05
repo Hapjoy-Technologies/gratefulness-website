@@ -83,6 +83,9 @@
   border: 1px solid var(--line);
   border-radius: 999px;
 }
+.home-proof-line {
+  display: none;
+}
 .home-proof a:hover {
   color: var(--raspberry);
 }
@@ -653,21 +656,43 @@
   .home-maker__links {
     gap: 0 20px;
   }
+  /* Phone hero: one line, one sentence, one button, then the app. */
+  .home-page .intro__inner {
+    gap: 28px;
+    padding: 12px 0 0;
+  }
+  .home-page .intro {
+    min-height: 0;
+    overflow: hidden;
+  }
   .home-page .intro__inner-content-title {
-    font-size: 48px;
+    font-size: min(9.8vw, 44px);
+    white-space: nowrap;
   }
   .home-page .intro__inner-content-para {
-    font-size: 20px;
+    margin: 10px 0 14px;
+    font-size: 18px;
+  }
+  .home-page .intro__inner-content-footer {
+    margin-top: 18px;
+  }
+  .home-hero-phones {
+    max-width: none;
+    aspect-ratio: 1 / 1.02;
+    margin-bottom: -6%;
   }
   .home-stats {
     justify-content: center;
     font-size: 16px;
   }
   .home-proof {
-    justify-content: center;
+    display: none;
   }
-  .home-proof a {
-    min-height: 40px;
+  .home-sections .home-proof-line {
+    display: block;
+    margin: -6px 0 18px;
+    color: var(--ink-soft);
+    font-size: 15px;
   }
   .home-maker__photo {
     width: 124px;
@@ -705,5 +730,10 @@
   }
   .home-page-head h1 {
     font-size: 40px;
+  }
+}
+@media (max-width: 360px) {
+  .home-stats span:nth-child(2) {
+    display: none;
   }
 }
