@@ -51,8 +51,9 @@ const page = ({ slug, title, description, h1, intro, body, type = "WebPage", ext
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/main.css?v=site2" />
-  <link rel="stylesheet" href="../css/site.css?v=2" />
-  <link rel="stylesheet" href="../css/home.css?v=21" />
+  <script>(function(u){var d=document.documentElement;if(/iPhone|iPad|iPod/.test(u))d.classList.add("is-ios");else if(/Android/.test(u))d.classList.add("is-android")})(navigator.userAgent)</script>
+  <link rel="stylesheet" href="../css/site.css?v=3" />
+  <link rel="stylesheet" href="../css/home.css?v=22" />
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5B0WGJZT0D"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5B0WGJZT0D");</script>
@@ -161,8 +162,10 @@ const applyAffirmationStyle = (file, prefix, hub) => {
   let html = fs.readFileSync(file, "utf8");
   html = html.replace(/family=Inter:wght@[^"]*display=swap/, FONTS);
   html = html.replace(/\s*<link rel="stylesheet" href="[^"]*css\/site\.css[^"]*" \/>/, "");
-  html = html.replace(/(<link rel="stylesheet" href="[^"]*css\/main\.css[^"]*" \/>)/, `$1<link rel="stylesheet" href="${prefix}css/site.css?v=2" />`);
-  html = html.replace(/css\/affirmations\.css\?v=\d+/, "css/affirmations.css?v=16").replace(/css\/affirmation-detail\.css\?v=\d+/, "css/affirmation-detail.css?v=10");
+  html = html.replace(/<script>\(function\(u\)\{var d=document[^<]*<\/script>/, "");
+  html = html.replace("</head>", `<script>(function(u){var d=document.documentElement;if(/iPhone|iPad|iPod/.test(u))d.classList.add("is-ios");else if(/Android/.test(u))d.classList.add("is-android")})(navigator.userAgent)</script></head>`);
+  html = html.replace(/(<link rel="stylesheet" href="[^"]*css\/main\.css[^"]*" \/>)/, `$1<link rel="stylesheet" href="${prefix}css/site.css?v=3" />`);
+  html = html.replace(/css\/affirmations\.css\?v=\d+/, "css/affirmations.css?v=17").replace(/css\/affirmation-detail\.css\?v=\d+/, "css/affirmation-detail.css?v=11");
   html = html.replace(/\s*<div class="pageWrapper__(left|right)">.*?<\/div>/g, "");
   html = html.replace(/<nav class="header__nav" aria-label="Main navigation">[\s\S]*?<\/nav>/, `<nav class="header__nav" aria-label="Main navigation"><a href="${prefix}affirmations/">Affirmations</a><a href="${prefix}visionboard/">Vision board</a><a class="header__nav-cta" href="${prefix}download/">Get the app</a></nav>`);
   const folder = html.match(/class="detail-cover" style="--card-bg:(#[0-9A-Fa-f]{6})"/);

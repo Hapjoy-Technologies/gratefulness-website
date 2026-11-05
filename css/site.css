@@ -80,6 +80,12 @@
   color: var(--ink);
 }
 
+/* On a phone, show only that phone's store button. */
+.is-ios a[href*="play.google"]:has(> img),
+.is-android a[href*="apps.apple"]:has(> img) {
+  display: none;
+}
+
 /* App screenshots */
 .home-phone {
   display: block;
@@ -127,23 +133,23 @@
     padding-right: 16px;
     padding-left: 16px;
   }
+  /* Phones: the logo and one action. Other pages are linked from the sections and footer. */
   .site-page .header__nav {
     flex: 0 0 auto;
-    gap: 0;
     padding: 0;
     background: none;
     border: 0;
   }
-  .site-page .header__nav a {
+  .site-page .header__nav a:not(.header__nav-cta) {
+    display: none;
+  }
+  .site-page .header__nav .header__nav-cta {
     display: flex;
     align-items: center;
     min-height: 44px;
-    padding: 0 8px;
+    padding: 0 18px;
     font-size: 14px;
     white-space: nowrap;
-  }
-  .site-page .header__nav .header__nav-cta {
-    display: none;
   }
   .site-page .header__inner-logo {
     min-height: 44px;
@@ -162,14 +168,5 @@
 @media (max-width: 430px) {
   .site-page .header__inner-logo {
     font-size: 18px;
-  }
-  .site-page .header__nav a {
-    padding: 0 6px;
-    font-size: 13px;
-  }
-}
-@media (max-width: 370px) {
-  .site-page .header__inner-logo span {
-    display: none;
   }
 }
