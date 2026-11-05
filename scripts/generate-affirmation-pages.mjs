@@ -84,7 +84,7 @@ function header(prefix = "../") {
     <div class="pageWrapper__right"><img src="${prefix}images/shape-right.svg" alt="" width="1241" height="1598" /></div>
     <header class="header">
       <div class="auto__container"><div class="header__inner">
-        <a href="${prefix}" class="header__inner-logo" aria-label="Gratitude home"><img src="${prefix}images/footer-logo.png" alt="" width="60" height="60" /><span>Gratitude</span></a>
+        <a href="${prefix}" class="header__inner-logo" aria-label="Gratitude home"><img src="${prefix}images/logo.svg" alt="" width="60" height="60" /><span>Gratitude</span></a>
         <nav class="header__nav" aria-label="Main navigation"><a href="${prefix}affirmations/">Affirmations</a><a href="${prefix}visionboard/">Vision board</a></nav>
       </div></div>
     </header>`;
