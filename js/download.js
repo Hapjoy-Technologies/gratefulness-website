@@ -18,3 +18,5 @@ function trackConversion(buttonId) {
 
 trackConversion("btn-android");
 trackConversion("btn-ios");
+trackConversion("btn-android-end");
+trackConversion("btn-ios-end");

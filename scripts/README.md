@@ -9,3 +9,7 @@ Review generated changes before committing. The generator also writes the sitema
 Temporary preview copies, ngrok URLs, and server logs must not be included in production. The local team-preview directory is separate from this repository.
 
 Deployment review: the repository has GitHub Pages enabled and a CNAME of www.gratefulness.me. Confirm the Pages publishing branch and Cloudflare origin configuration with the site administrator before merging. A draft pull request is not production approval.
+
+## Site pages and footer
+
+`node scripts/generate-site-pages.mjs` builds `/features/`, `/pricing/`, `/download/` and `/about/`, and applies the shared footer (`scripts/site-footer.mjs`) and main navigation to the homepage and affirmation pages. Unlike the affirmation generator, it doesn't need the `gratitude-static-content` checkout.

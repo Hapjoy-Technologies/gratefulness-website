@@ -897,7 +897,7 @@ img.h-shape {
 .footer-wrapper a img {
   height: 30px;
   width: 30px;
-  border-radius: 50%;
+  border-radius: 23%;
 }
 .footer-wrapper a span {
   display: block;
@@ -983,9 +983,10 @@ img.h-shape {
   display: flex;
   align-items: center;
   min-width: 0;
-  color: #000;
-  font-size: 26px;
-  font-weight: 500;
+  color: #282128;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   line-height: 1.25;
   transition: none;
 }
@@ -995,11 +996,8 @@ img.h-shape {
   flex: 0 0 46px;
   display: block;
   box-sizing: border-box;
-  padding: 2px;
-  margin-right: 12px;
-  background: #fdcbd0;
-  border-radius: 50%;
-  clip-path: circle(50% at 50% 50%);
+  margin-right: 10px;
+  border-radius: 23%;
   object-fit: contain;
   overflow: hidden;
   box-shadow: none;
@@ -1055,7 +1053,6 @@ img.h-shape {
     height: 38px;
     flex-basis: 38px;
     margin-right: 8px;
-    border-radius: 50%;
   }
   .header__inner-link {
     display: inline-flex;
@@ -1389,16 +1386,16 @@ img.h-shape {
   align-items: center;
   gap: 11px;
   justify-self: start;
-  color: #252126;
+  color: #282128;
   font-size: 20px;
-  font-weight: 750;
-  letter-spacing: -0.04em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 .footer__brand img {
   width: 40px;
   height: 40px;
   display: block;
-  border-radius: 50%;
+  border-radius: 23%;
   box-shadow: none;
 }
 .footer__socials {
@@ -1873,5 +1870,56 @@ img.h-shape {
   .download-actions {
     margin-right: auto;
     margin-left: auto;
+  }
+}
+
+/* Shared site footer */
+.footer--site {
+  padding: 40px 0 16px;
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 32px;
+  margin: 24px 0 32px;
+}
+.footer--site .footer__column {
+  gap: 10px;
+}
+.footer--site .footer__column h2 {
+  margin-bottom: 4px;
+}
+.footer--site .footer__column a {
+  font-size: 14px;
+}
+@media (max-width: 900px) {
+  .footer__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 20px;
+  }
+  /* Comfortable tap targets */
+  .footer--site .footer__column {
+    gap: 0;
+  }
+  .footer--site .footer__column h2 {
+    margin-bottom: 6px;
+  }
+  .footer--site .footer__column a {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    min-height: 44px;
+    font-size: 15px;
+  }
+  .footer--site .footer__column a::after {
+    display: none;
+  }
+  .footer--site .footer__bottom p {
+    font-size: 13px;
   }
 }
