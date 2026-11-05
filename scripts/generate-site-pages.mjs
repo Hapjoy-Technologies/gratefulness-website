@@ -51,14 +51,15 @@ const page = ({ slug, title, description, h1, intro, body, type = "WebPage", ext
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/main.css?v=site2" />
-  <link rel="stylesheet" href="../css/home.css?v=20" />
+  <link rel="stylesheet" href="../css/site.css?v=2" />
+  <link rel="stylesheet" href="../css/home.css?v=21" />
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5B0WGJZT0D"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5B0WGJZT0D");</script>
   <script async src="https://plausible.io/js/pa-bLydEOQt7HklO79Cjiv7A.js"></script>
   <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
 </head>
-<body class="home-page">
+<body class="home-page site-page">
   <header class="header"><div class="auto__container"><div class="header__inner"><a href="../" class="header__inner-logo" aria-label="Gratitude home"><img src="../images/logo.svg" alt="" width="46" height="46" /><span>Gratitude</span></a><nav class="header__nav" aria-label="Main navigation"><a href="../affirmations/">Affirmations</a><a href="../visionboard/">Vision board</a><a class="header__nav-cta" href="../download/">Get the app</a></nav></div></div></header>
   <main class="home-sections">
     <section class="home-page-head"><div class="auto__container home-narrow"><h1>${h1}</h1><p>${intro}</p>${headExtra}</div></section>
@@ -153,21 +154,34 @@ const apply = (file, prefix) => {
   if (!footerPattern.test(html)) throw new Error(`No footer in ${file}`);
   fs.writeFileSync(file, html.replace(footerPattern, () => siteFooter(prefix)));
 };
-// Same main navigation on the affirmation pages.
-const applyNav = (file, prefix) => {
-  const html = fs.readFileSync(file, "utf8");
-  const nav = `<nav class="header__nav" aria-label="Main navigation"><a href="${prefix}affirmations/">Affirmations</a><a href="${prefix}visionboard/">Vision board</a></nav>`;
-  fs.writeFileSync(file, html.replace(/<nav class="header__nav" aria-label="Main navigation">[\s\S]*?<\/nav>/, nav));
+// Brings the output of generate-affirmation-pages.mjs in line with the shared style. Safe to run repeatedly.
+const FONTS = "family=Inter:wght@400;500;600;700;800&amp;family=Lora:wght@400..700&amp;display=swap";
+const storeButtons = (prefix) => `<div class="store-buttons" role="group" aria-label="Download the Gratitude app"><a class="store-btn" href="${android}" target="_blank" rel="noopener"><img src="${prefix}images/google-play.svg" alt="Get it on Google Play" width="180" height="54" loading="lazy" /></a><a class="store-btn" href="${ios}" target="_blank" rel="noopener"><img src="${prefix}images/app-store.svg" alt="Download on the App Store" width="180" height="54" loading="lazy" /></a></div>`;
+const applyAffirmationStyle = (file, prefix, hub) => {
+  let html = fs.readFileSync(file, "utf8");
+  html = html.replace(/family=Inter:wght@[^"]*display=swap/, FONTS);
+  html = html.replace(/\s*<link rel="stylesheet" href="[^"]*css\/site\.css[^"]*" \/>/, "");
+  html = html.replace(/(<link rel="stylesheet" href="[^"]*css\/main\.css[^"]*" \/>)/, `$1<link rel="stylesheet" href="${prefix}css/site.css?v=2" />`);
+  html = html.replace(/css\/affirmations\.css\?v=\d+/, "css/affirmations.css?v=16").replace(/css\/affirmation-detail\.css\?v=\d+/, "css/affirmation-detail.css?v=10");
+  html = html.replace(/\s*<div class="pageWrapper__(left|right)">.*?<\/div>/g, "");
+  html = html.replace(/<nav class="header__nav" aria-label="Main navigation">[\s\S]*?<\/nav>/, `<nav class="header__nav" aria-label="Main navigation"><a href="${prefix}affirmations/">Affirmations</a><a href="${prefix}visionboard/">Vision board</a><a class="header__nav-cta" href="${prefix}download/">Get the app</a></nav>`);
+  const folder = html.match(/class="detail-cover" style="--card-bg:(#[0-9A-Fa-f]{6})"/);
+  html = html.replace(/<body class="[^"]*"[^>]*>/, hub ? `<body class="site-page affirmations-page">` : `<body class="site-page affirmations-page detail-page"${folder ? ` style="--folder:${folder[1]}"` : ""}>`);
+  if (hub) {
+    html = html.replace(/<section class="aff-hero"[\s\S]*?<\/section>/, `<section class="aff-hero" aria-labelledby="page-title"><div class="auto__container aff-hero__inner"><div class="aff-hero__content"><h1 id="page-title">Positive affirmations for every part of you</h1><p class="aff-hero__intro">Choose what you need today, and take it at your own pace.</p><a class="aff-primary" href="#affirmation-library">Explore affirmations <span aria-hidden="true">↓</span></a></div><div class="aff-hero__phones" aria-hidden="true"><figure class="home-phone"><img src="${prefix}images/app/affirmations-folders.webp" alt="" width="603" height="1311" fetchpriority="high" /></figure><figure class="home-phone"><img src="${prefix}images/app/affirmations-sleep-better-folder.webp" alt="" width="603" height="1311" /></figure></div></div></section>`);
+    html = html.replace(/<section class="(?:aff-cta|home-cta)"[\s\S]*?<\/section>/, `<section class="home-cta" aria-labelledby="aff-cta-title"><div class="auto__container"><h2 id="aff-cta-title">Carry these words with you.</h2><p>Listen, write your own and add music in the free app.</p>${storeButtons(prefix)}</div></section>`);
+  }
+  fs.writeFileSync(file, html);
 };
 apply(path.join(root, "index.html"), "");
 apply(path.join(root, "affirmations", "index.html"), "../");
-applyNav(path.join(root, "affirmations", "index.html"), "../");
+applyAffirmationStyle(path.join(root, "affirmations", "index.html"), "../", true);
 const affirmations = path.join(root, "affirmations");
 for (const entry of fs.readdirSync(affirmations, { withFileTypes: true })) {
   const file = path.join(affirmations, entry.name, "index.html");
   if (entry.isDirectory() && fs.existsSync(file)) {
     apply(file, "../../");
-    applyNav(file, "../../");
+    applyAffirmationStyle(file, "../../", false);
   }
 }
 console.log(`Built ${pages.length} pages and applied the shared footer.`);
