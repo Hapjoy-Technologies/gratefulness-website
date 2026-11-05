@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { siteFooter } from "./site-footer.mjs";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const siteDir = path.resolve(scriptDir, "..");
@@ -84,13 +85,13 @@ function header(prefix = "../") {
     <header class="header">
       <div class="auto__container"><div class="header__inner">
         <a href="${prefix}" class="header__inner-logo" aria-label="Gratitude home"><img src="${prefix}images/footer-logo.png" alt="" width="60" height="60" /><span>Gratitude</span></a>
-        <nav class="header__nav" aria-label="Main navigation"><a href="${prefix}affirmations/">Affirmations</a><a href="https://blog.gratefulness.me/tag/inspirational-stories/">Stories</a></nav>
+        <nav class="header__nav" aria-label="Main navigation"><a href="${prefix}affirmations/">Affirmations</a><a href="${prefix}visionboard/">Vision board</a></nav>
       </div></div>
     </header>`;
 }
 
 function footer(prefix = "../") {
-  return `<footer class="footer footer--home aff-footer"><div class="auto__container"><div class="footer__main"><div class="footer__identity"><a href="${prefix}" class="footer__brand"><img src="${prefix}images/footer-logo.png" alt="" width="60" height="60" /><span>Gratitude</span></a><p>Find joy in the little things.</p><div class="footer__socials"><a href="https://www.instagram.com/gratefulness.me/" aria-label="Gratitude on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a><a href="https://www.facebook.com/gratefulness.me" aria-label="Gratitude on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M14 8h3V4.3c-.5-.1-2.2-.3-4.1-.3C9 4 6.3 6.4 6.3 10.8V14H2v4.1h4.3V24h5.2v-5.9h4.2l.7-4.1h-4.9v-2.8C11.5 9.9 11.9 8 14 8Z"/></svg></a><a href="https://www.youtube.com/@GratitudeChannel" target="_blank" rel="noopener" aria-label="Gratitude on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8ZM9.5 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg></a></div></div><nav class="footer__column" aria-label="Support"><h2>Support</h2><a href="mailto:team@gratefulness.me">Contact us</a><a href="${prefix}privacy-policy.html">Privacy policy</a><a href="${prefix}terms-and-conditions.html">Terms of use</a></nav><nav class="footer__column" aria-label="Explore"><h2>Explore</h2><a href="${prefix}affirmations/">Affirmations</a><a href="https://blog.gratefulness.me/tag/inspirational-stories/">Gratitude stories</a></nav></div><div class="footer__bottom"><p>&copy; 2026 Gratitude</p></div></div></footer>`;
+  return siteFooter(prefix);
 }
 
 function head({title, description, canonical, image, prefix = "../", detail = false, schema}) {
@@ -100,7 +101,7 @@ function head({title, description, canonical, image, prefix = "../", detail = fa
     <link rel="canonical" href="${canonical}" /><link rel="icon" type="image/png" href="${prefix}favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link rel="preconnect" href="https://static.gratefulness.me" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="${prefix}css/main.css?v=ea58efc3" /><link rel="stylesheet" href="${prefix}css/affirmations.css?v=13" />${detail ? `<link rel="stylesheet" href="${prefix}css/affirmation-detail.css?v=8" />` : ""}
+    <link rel="stylesheet" href="${prefix}css/main.css?v=site2" /><link rel="stylesheet" href="${prefix}css/affirmations.css?v=14" />${detail ? `<link rel="stylesheet" href="${prefix}css/affirmation-detail.css?v=8" />` : ""}
     <meta property="og:type" content="website" /><meta property="og:site_name" content="Gratitude" /><meta property="og:title" content="${escapeHtml(title)}" /><meta property="og:description" content="${escapeHtml(description)}" /><meta property="og:url" content="${canonical}" />${image ? `<meta property="og:image" content="${image}" /><meta property="og:image:alt" content="${escapeHtml(title)}" /><meta name="twitter:image" content="${image}" /><meta name="twitter:image:alt" content="${escapeHtml(title)}" />` : ""}<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="${escapeHtml(title)}" /><meta name="twitter:description" content="${escapeHtml(description)}" />
     <script type="application/ld+json">${jsonForHtml(schema)}</script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}"></script>
@@ -192,6 +193,10 @@ const sitemapEntries = [
   "embracing-myself-challenge.html",
   "remembering-with-gratitude-challenge.html",
   "new-year-challenge.html",
+  "features/",
+  "pricing/",
+  "download/",
+  "about/",
   "privacy-policy.html",
   "terms-and-conditions.html",
 ];

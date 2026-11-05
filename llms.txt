@@ -1,0 +1,22 @@
+# Gratitude
+
+> Gratitude is a free self-care app for iPhone and Android with a gratitude journal, affirmations, Daily Zen and vision boards. No account needed. Made by Hapjoy Technologies Pvt. Ltd., a small team in India, founded by Pritesh Sankhe in 2018.
+
+## Key facts
+
+- Rated 4.8 out of 5 from over 260,000 ratings, with over 8 million downloads.
+- Free to download and use. Gratitude Pro costs $39.99 a year or $6.99 a month in the US, and prices vary by country.
+- Google Play Editors' Choice, and featured by the App Store in the Meet the Developer story "Building a more resilient world" (August 2025): https://apps.apple.com/us/story/id1818561810
+- Entries are stored on the device. Optional backup goes to the user's own Google Drive or iCloud.
+
+## Pages
+
+- [Features](https://www.gratefulness.me/features/): what's in the app
+- [Pricing](https://www.gratefulness.me/pricing/): Free and Gratitude Pro
+- [Download](https://www.gratefulness.me/download/): iPhone and Android
+- [About](https://www.gratefulness.me/about/): who makes Gratitude
+- [Affirmations](https://www.gratefulness.me/affirmations/): affirmations by topic
+- [Free vision board maker](https://www.gratefulness.me/visionboard/): runs in the browser
+- [Blog](https://blog.gratefulness.me/): gratitude, journaling and self-care
+- [FAQs](https://faqs.gratefulness.me/)
+- [Privacy policy](https://www.gratefulness.me/privacy-policy.html)

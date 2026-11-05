@@ -4,22 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/main.css?v=ea58efc3" />
-    <style>
-      /* The third header link only fits beside the logo on wider screens. The footer link covers phones. */
-      @media (max-width: 560px) {
-        .header__nav-wide {
-          display: none;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="css/main.css?v=site2" />
+    <link rel="stylesheet" href="css/home.css?v=20" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400..700&display=swap"
       rel="stylesheet"
     />
-    <title>Gratitude Journal App to Improve Your Longterm Well-being</title>
+    <title>Gratitude: Journal, Affirmations &amp; Vision Board App</title>
     <meta name="robots" content="all" />
     <meta http-equiv="content-language" content="en-us" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -33,13 +26,9 @@
     />
     <meta
       name="description"
-      content="Write journal entries for your gratitude journal, construct self-affirmations, receive daily quotes, and build a vision board that consists of images and goals."
+      content="Gratitude is a free app for iPhone and Android with a gratitude journal, affirmations and vision boards in one place. No account needed. Rated 4.8 out of 5."
     />
     <link rel="canonical" href="https://www.gratefulness.me/" />
-    <meta
-      name="keywords"
-      content="gratitude apps, gratitude journal app, gratitude, positive affirmations app, affirmations for gratitude, how to be grateful in life, journal apps for android, journal apps for ios, affirmations app, how to practice gratitude, gratitude journal daily, daily happiness quotes, positive journal, online gratitude journal app, gratefulness app, grateful app, the best gratitude journal app, happiness and gratitude quotes, i m grateful quotes, best daily affirmations app, mental health app, life blog, free gratitude app, why should I be grateful in life, gratitude journal app android, gratitude app quotes, gratitude journal prompts app, free online gratitude journal, gratitude apps for iPhone, apps for gratitude, free gratitude journal app, daily gratitude journal, gratitude diary app, daily journal app, daily gratitude app, vision board app, visualize your goals, best vision board app, my vision board, what is vision board, how can feeling grateful help me, does gratitude reduces anxiety"
-    />
     <meta
       name="apple-itunes-app"
       content="app-id=1372575227, app-argument=https://www.gratefulness.me/"
@@ -48,39 +37,39 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:site_name"
-      content="Gratitude | A tool to help you improve your long-term well-being."
+      content="Gratitude"
     />
     <meta
       property="og:title"
-      content="Gratitude | A tool to help you improve your long-term well-being."
+      content="Gratitude: Journal, Affirmations &amp; Vision Board App"
     />
     <meta
       property="og:description"
-      content="Write journal entries for your gratitude journal, construct self-affirmations, receive daily quotes, and build a vision board that consists of images and goals."
+      content="Gratitude is a free app for iPhone and Android with a gratitude journal, affirmations and vision boards in one place. No account needed. Rated 4.8 out of 5."
     />
     <meta
       property="og:image"
-      content="https://www.gratefulness.me/images/meta.png"
+      content="https://www.gratefulness.me/images/og-gratitude.jpg"
     />
-    <meta name="og:image:type" property="og:image:type" content="image/png" />
-    <meta name="og:image:width" property="og:image:width" content="600" />
-    <meta name="og:image:height" property="og:image:height" content="600" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="og:image:alt" property="og:image:alt" content="Gratitude app" />
     <meta property="og:url" content="https://www.gratefulness.me/" />
     <meta property="fb:app_id" content="2014817055449844" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gratefulness_me" />
     <meta
       name="twitter:title"
-      content="Gratitude | A tool to help you improve your long-term well-being."
+      content="Gratitude: Journal, Affirmations &amp; Vision Board App"
     />
     <meta
       name="twitter:description"
-      content="Write journal entries for your gratitude journal, construct self-affirmations, receive daily quotes, and build a vision board that consists of images and goals."
+      content="Gratitude is a free app for iPhone and Android with a gratitude journal, affirmations and vision boards in one place. No account needed. Rated 4.8 out of 5."
     />
     <meta
       name="twitter:image"
-      content="https://www.gratefulness.me/images/meta.png"
+      content="https://www.gratefulness.me/images/og-gratitude.jpg"
     />
     <meta name="twitter:image:alt" content="Gratitude app" />
     <meta property="al:ios:url" content="applinks://gratefulness.me" />
@@ -92,64 +81,104 @@
       name="facebook-domain-verification"
       content="lcdg1xkootpofta7m6329x882jaw59"
     />
-    <link rel="icon" type="image/x-icon" href="./favicon.png" defer />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fbeeee" />
+    <link rel="preload" as="image" href="images/app/gratitude-journal-sunset.webp?v=3" fetchpriority="high" />
 
     <script type="application/ld+json">
       {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.gratefulness.me/#organization",
+      "name": "Gratitude",
+      "legalName": "Hapjoy Technologies Private Limited",
+      "foundingDate": "2018",
+      "url": "https://www.gratefulness.me/",
+      "founder": {
+        "@type": "Person",
+        "name": "Pritesh Sankhe",
+        "jobTitle": "Founder",
+        "image": "https://www.gratefulness.me/images/pritesh-sankhe.webp",
+        "subjectOf": {
+          "@type": "Article",
+          "headline": "Building a more resilient world",
+          "url": "https://apps.apple.com/us/story/id1818561810",
+          "datePublished": "2025-08-06",
+          "publisher": {
             "@type": "Organization",
-            "@id": "https://www.gratefulness.me/#organization",
-            "name": "Gratitude",
-            "url": "https://www.gratefulness.me/",
-            "logo": "https://www.gratefulness.me/images/footer-logo.png",
-            "sameAs": [
-              "https://www.instagram.com/gratefulness.me/",
-              "https://www.facebook.com/gratefulness.me",
-              "https://x.com/gratefulness_me",
-              "https://www.youtube.com/@GratitudeChannel"
-            ],
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "email": "team@gratefulness.me",
-              "contactType": "customer support"
-            }
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://www.gratefulness.me/#website",
-            "url": "https://www.gratefulness.me/",
-            "name": "Gratitude",
-            "publisher": {
-              "@id": "https://www.gratefulness.me/#organization"
-            }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://www.gratefulness.me/#app",
-            "name": "Gratitude",
-            "url": "https://www.gratefulness.me/",
-            "description": "Write journal entries for your gratitude journal, construct self-affirmations, receive daily quotes, and build a vision board that consists of images and goals.",
-            "applicationCategory": "LifestyleApplication",
-            "operatingSystem": "Android, iOS",
-            "downloadUrl": "https://www.gratefulness.me/app/",
-            "publisher": {
-              "@id": "https://www.gratefulness.me/#organization"
-            },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.8",
-              "reviewCount": "260000",
-              "bestRating": "5"
-            },
-            "sameAs": [
-              "https://play.google.com/store/apps/details?id=com.northstar.gratitude",
-              "https://apps.apple.com/app/id1372575227"
-            ]
+            "name": "App Store"
           }
-        ]
+        }
+      },
+      "logo": "https://www.gratefulness.me/images/logo.svg",
+      "sameAs": [
+        "https://www.instagram.com/gratefulness.me/",
+        "https://www.facebook.com/gratefulness.me",
+        "https://x.com/gratefulness_me",
+        "https://www.youtube.com/@GratitudeChannel"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "team@gratefulness.me",
+        "contactType": "customer support"
       }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.gratefulness.me/#website",
+      "url": "https://www.gratefulness.me/",
+      "name": "Gratitude",
+      "publisher": {
+        "@id": "https://www.gratefulness.me/#organization"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.gratefulness.me/#app",
+      "name": "Gratitude",
+      "url": "https://www.gratefulness.me/",
+      "description": "Gratitude is a free app for iPhone and Android with a gratitude journal, affirmations and vision boards in one place. No account needed. Rated 4.8 out of 5.",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Android, iOS",
+      "downloadUrl": "https://www.gratefulness.me/download/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://www.gratefulness.me/#organization"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "260000",
+        "bestRating": "5"
+      },
+      "featureList": [
+        "Gratitude journal with prompts, photos, voice entries and streaks",
+        "Affirmations to read or listen to, with your own affirmations, music and voice recordings",
+        "Daily Zen quotes, thought switch ideas and stories",
+        "Vision boards with sections, goal ideas and music playback",
+        "Optional backup to Google Drive and iCloud sync"
+      ],
+      "screenshot": [
+        "https://www.gratefulness.me/images/app/gratitude-journal-entries.webp",
+        "https://www.gratefulness.me/images/app/affirmations-folders.webp",
+        "https://www.gratefulness.me/images/app/daily-zen-cards.webp",
+        "https://www.gratefulness.me/images/app/vision-board-home.webp"
+      ],
+      "sameAs": [
+        "https://play.google.com/store/apps/details?id=com.northstar.gratitude",
+        "https://apps.apple.com/app/id1372575227"
+      ],
+      "award": "Google Play Editors' Choice"
+    }
+  ]
+}
     </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -200,14 +229,6 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         fbq("track", "PageView");
       }
     </script>
-    <noscript>
-      <img
-        height="1"
-        width="1"
-        style="display: none"
-        src="https://www.facebook.com/tr?id={your-pixel-id-goes-here}&ev=PageView&noscript=1"
-      />
-    </noscript>
     <!-- Privacy-friendly analytics by Plausible -->
     <script async src="https://plausible.io/js/pa-bLydEOQt7HklO79Cjiv7A.js"></script>
     <script>
@@ -216,7 +237,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
     </script>
   </head>
 
-  <body onload="FbPixelLoad()">
+  <body class="home-page" onload="FbPixelLoad()">
     <!-- page wrapper start
     ============================================= -->
     <div class="pageWrapper">
@@ -237,13 +258,13 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         <div class="auto__container">
           <div class="header__inner">
             <a href="/" class="header__inner-logo" aria-label="Gratitude home">
-              <img src="images/footer-logo.png" alt="Logo of the Gratitude Journal App" width="60" height="60" />
+              <img src="images/logo.svg" alt="" width="46" height="46" />
               <span>Gratitude</span>
             </a>
             <nav class="header__nav" aria-label="Main navigation">
               <a href="affirmations/">Affirmations</a>
-              <a class="header__nav-wide" href="visionboard/">Vision board</a>
-              <a href="https://blog.gratefulness.me/tag/inspirational-stories/">Stories</a>
+              <a href="visionboard/">Vision board</a>
+              <a class="header__nav-cta" href="download/">Get the app</a>
             </nav>
           </div>
         </div>
@@ -252,82 +273,24 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
     ============================================= -->
       <!-- intro start
     ============================================= -->
+      <main>
       <section id="download_now" class="intro">
         <div class="auto__container">
           <div class="intro__inner">
             <div class="intro__inner-content">
-              <h1 class="intro__inner-content-title">
-                Happiness is <br />
-                Within You
-              </h1>
-              <p class="intro__inner-content-para">
-                Gratitude is a tool to help you focus on the positive,
-                <br />
-                become more mindful, and live with intention.
+              <h1 class="intro__inner-content-title">Notice what's good.</h1>
+              <p class="intro__inner-content-para">A gratitude journal with affirmations and vision boards.</p>
+              <p class="home-stats">
+                <span class="home-stats__rating"><span class="home-stats__star" aria-hidden="true">★</span> <span class="home-sr-only">Rated </span>4.8<span class="home-sr-only"> out of 5</span></span>
+                <span>260K+ ratings</span>
+                <span>8M+ downloads</span>
               </p>
-              <div
-                class="reviews-downloads"
-                role="group"
-                aria-label="Rated 4.8 out of 5 from over 260,000 reviews, with over 8 million downloads"
-              >
-                <div class="reviews-downloads__rating">
-                  <div class="reviews-downloads__stars" aria-hidden="true">
-                    <svg viewBox="0 0 34 32">
-                      <path
-                        d="M16.7857 0L21.9725 10.3587L33.5714 12.03L25.1786 20.0886L27.1593 31.4732L16.7857 26.0953L6.41215 31.4732L8.39286 20.0886L0 12.03L11.5989 10.3587L16.7857 0Z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 34 32">
-                      <path
-                        d="M16.7857 0L21.9725 10.3587L33.5714 12.03L25.1786 20.0886L27.1593 31.4732L16.7857 26.0953L6.41215 31.4732L8.39286 20.0886L0 12.03L11.5989 10.3587L16.7857 0Z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 34 32">
-                      <path
-                        d="M16.7857 0L21.9725 10.3587L33.5714 12.03L25.1786 20.0886L27.1593 31.4732L16.7857 26.0953L6.41215 31.4732L8.39286 20.0886L0 12.03L11.5989 10.3587L16.7857 0Z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 34 32">
-                      <path
-                        d="M16.7857 0L21.9725 10.3587L33.5714 12.03L25.1786 20.0886L27.1593 31.4732L16.7857 26.0953L6.41215 31.4732L8.39286 20.0886L0 12.03L11.5989 10.3587L16.7857 0Z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 34 32">
-                      <defs>
-                        <linearGradient
-                          id="rating-star-4-8"
-                          x1="0"
-                          y1="0"
-                          x2="1"
-                          y2="0"
-                        >
-                          <stop offset="80%" stop-color="currentColor" />
-                          <stop offset="80%" stop-color="#d9d9d9" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        fill="url(#rating-star-4-8)"
-                        d="M16.7857 0L21.9725 10.3587L33.5714 12.03L25.1786 20.0886L27.1593 31.4732L16.7857 26.0953L6.41215 31.4732L8.39286 20.0886L0 12.03L11.5989 10.3587L16.7857 0Z"
-                      />
-                    </svg>
-                  </div>
-                  <div class="reviews-downloads__copy">
-                    <strong>4.8 out of 5</strong>
-                    <span>260K+ reviews</span>
-                  </div>
-                </div>
-                <span
-                  class="reviews-downloads__divider"
-                  aria-hidden="true"
-                ></span>
-                <div
-                  class="reviews-downloads__copy reviews-downloads__downloads"
-                >
-                  <strong>8M+ downloads</strong>
-                </div>
-              </div>
+              <ul class="home-proof" aria-label="Recognition">
+                <li><a href="https://play.google.com/store/apps/details?id=com.northstar.gratitude&amp;hl=en_US&amp;gl=US" target="_blank" rel="noopener">Google Play Editors' Choice</a></li>
+                <li><a href="https://apps.apple.com/us/story/id1818561810" target="_blank" rel="noopener">Featured on the App Store</a></li>
+              </ul>
               <div class="intro__inner-content-footer">
-                <div class="download-actions">
+                <div class="download-actions has-qr">
                   <div
                     class="store-buttons"
                     role="group"
@@ -376,15 +339,11 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                     aria-hidden="true"
                   ></span>
                   <a
-                    class="qr-download qr-download--metric"
+                    class="qr-download qr-download--metric is-ready"
                     href="https://www.gratefulness.me/app/"
                     aria-label="Scan to download the Gratitude app"
                   >
-                    <span
-                      id="download-qr"
-                      class="qr-download__code"
-                      aria-hidden="true"
-                    ></span>
+                    <span class="qr-download__code" aria-hidden="true"><img src="images/app-qr.svg" alt="" width="92" height="92" /></span>
                     <span class="qr-download__label"
                       >Scan the code to download free app</span
                     >
@@ -392,167 +351,185 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                 </div>
               </div>
             </div>
-            <div class="intro__inner-image">
-              <img src="images/ola.svg" alt="" width="483" height="520" />
-              <div class="intro__inner-image-plant">
-                <img src="images/plant.svg" alt="" width="252" height="396" />
-              </div>
+            <div class="home-hero-phones">
+              <a class="home-phone home-phone--left" href="#affirmations"><img src="images/app/affirmations-folders.webp" alt="Affirmation folders in the Gratitude app" width="603" height="1311" decoding="async" /></a>
+              <a class="home-phone home-phone--right" href="#vision-board"><img src="images/app/vision-board-home.webp" alt="Vision board in the Gratitude app" width="603" height="1311" decoding="async" /></a>
+              <a class="home-phone home-phone--center" href="#gratitude-journal"><img src="images/app/gratitude-journal-sunset.webp?v=3" alt="Gratitude journal entries: a rooftop at sunset, a voice note, and a list about market apples and hydrangeas with photos of them" width="603" height="1311" fetchpriority="high" decoding="async" /></a>
             </div>
           </div>
         </div>
       </section>
       <!-- intro end
     ============================================= -->
+      <div class="home-sections">
+        <section id="gratitude-journal" class="home-feature home-fold" aria-labelledby="h-gratitude-journal">
+          <div class="auto__container home-feature__inner">
+            <div class="home-feature__text">
+              <h2 id="h-gratitude-journal" class="home-feature__label">Gratitude journal</h2>
+              <p class="home-feature__line">Write down one good thing.</p>
+              <p class="home-feature__sub">Prompts and gentle reminders for the days you don't know where to start.</p>
+              <ul class="home-pills"><li>Hundreds of prompts</li><li>Photos</li><li>Voice entries</li><li>Streaks</li><li>Backgrounds and fonts</li></ul>
+              <a href="https://blog.gratefulness.me/how-to-start-gratitude-journaling/">How to start a gratitude journal</a>
+            </div>
+            <div class="home-phones"><figure class="home-phone"><img src="images/app/gratitude-journal-entries.webp" alt="Gratitude app journal with a 242-day streak and recent entries with a prompt, a voice note and photos" width="603" height="1311" loading="lazy" decoding="async" /></figure><figure class="home-phone"><img src="images/app/gratitude-journal-single-entry.webp" alt="A gratitude journal entry about a morning walk, with a mood, a voice note and a photo of autumn leaves" width="603" height="1311" loading="lazy" decoding="async" /></figure></div>
+          </div>
+        </section>
+        <section id="affirmations" class="home-feature home-feature--flip home-fold" aria-labelledby="h-affirmations">
+          <div class="auto__container home-feature__inner">
+            <div class="home-feature__text">
+              <h2 id="h-affirmations" class="home-feature__label">Affirmations</h2>
+              <p class="home-feature__line">Be kind to yourself, out loud.</p>
+              <p class="home-feature__sub">Pick a folder for how you feel today, then read or listen.</p>
+              <ul class="home-pills"><li>Hundreds of affirmations</li><li>Write your own</li><li>Add music</li><li>Record your voice</li></ul>
+              <a href="affirmations/">Browse affirmations by topic</a>
+            </div>
+            <div class="home-phones"><figure class="home-phone"><img src="images/app/affirmations-folders.webp" alt="Illustrated affirmation folders in the Gratitude app, including Sleep Better, Cleanse Mind, Heal Yourself and Appreciate Body" width="603" height="1311" loading="lazy" decoding="async" /></figure><figure class="home-phone"><img src="images/app/affirmations-sleep-better-folder.webp" alt="The Sleep Better affirmations folder, with affirmations such as I deserve to rest well" width="603" height="1311" loading="lazy" decoding="async" /></figure></div>
+          </div>
+        </section>
+        <section id="daily-zen" class="home-feature home-fold" aria-labelledby="h-daily-zen">
+          <div class="auto__container home-feature__inner">
+            <div class="home-feature__text">
+              <h2 id="h-daily-zen" class="home-feature__label">Daily Zen</h2>
+              <p class="home-feature__line">A quiet corner for today.</p>
+              <p class="home-feature__sub">Something new every day, for when you need a lift or a different way of looking at things.</p>
+              <ul class="home-pills"><li>Quotes</li><li>Thought switches</li><li>Thank you cards</li><li>Real stories</li></ul>
+              <a href="https://blog.gratefulness.me/tag/inspirational-stories/">Read gratitude stories</a>
+            </div>
+            <div class="home-phones"><figure class="home-phone"><img src="images/app/daily-zen-quote.webp" alt="Daily Zen in the Gratitude app, with an Alan Watts quote on a card of pressed flowers" width="603" height="1311" loading="lazy" decoding="async" /></figure><figure class="home-phone"><img src="images/app/daily-zen-cards.webp" alt="Daily Zen cards with the affirmation I make space for things that delight me, and a thought switch" width="603" height="1311" loading="lazy" decoding="async" /></figure></div>
+          </div>
+        </section>
+        <section id="vision-board" class="home-feature home-feature--flip home-fold" aria-labelledby="h-vision-board">
+          <div class="auto__container home-feature__inner">
+            <div class="home-feature__text">
+              <h2 id="h-vision-board" class="home-feature__label">Vision board</h2>
+              <p class="home-feature__line">Keep what you want in sight.</p>
+              <p class="home-feature__sub">Pin up photos, quotes and affirmations for each goal. Press play to see it all with music.</p>
+              <ul class="home-pills"><li>Goal ideas</li><li>Sections for each goal</li><li>Play with music</li><li>More boards with Pro</li></ul>
+              <a href="visionboard/">Try the free vision board maker on the web</a>
+            </div>
+            <div class="home-phones"><figure class="home-phone"><img src="images/app/vision-board-home.webp" alt="A vision board called Our first home together, with taped photo prints for a reading nook and a kitchen" width="603" height="1311" loading="lazy" decoding="async" /></figure><figure class="home-phone"><img src="images/app/vision-board-play.webp" alt="A vision board playing full screen, showing a candlelit table with flowers" width="603" height="1311" loading="lazy" decoding="async" /></figure></div>
+          </div>
+        </section>
+
+        <section class="home-section home-reviews home-fold" aria-labelledby="home-reviews">
+          <div class="auto__container">
+            <h2 id="home-reviews">In people's own words</h2>
+            <div class="home-reviews__grid">
+              <figure class="home-review">
+                <div class="home-review__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <h3>Teacher</h3>
+                <blockquote>Absolutely love this app, I use it everyday and it helps me live day by day, moment by moment and keeps me on track for gratitude which is the best way of life.</blockquote>
+                <figcaption><span class="home-review__avatar" aria-hidden="true">K</span><span><strong>KayDobbin</strong><small>App Store, United States · June 2026</small></span></figcaption>
+              </figure>
+              <figure class="home-review">
+                <div class="home-review__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <h3>Gratitude</h3>
+                <blockquote>The app reminds me to be grateful. The questions are well written and they help with my daily journaling</blockquote>
+                <figcaption><span class="home-review__avatar" aria-hidden="true">Z</span><span><strong>Zara-kaye</strong><small>App Store, United Kingdom · September 2025</small></span></figcaption>
+              </figure>
+              <figure class="home-review">
+                <div class="home-review__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <h3>LOVEEE</h3>
+                <blockquote>This app has helped me so much to organize my thoughts and keep me grounded. I definitely recommend for anyone trying to heal through journaling.</blockquote>
+                <figcaption><span class="home-review__avatar" aria-hidden="true">E</span><span><strong>Ellie’spen</strong><small>App Store, United States · January 2026</small></span></figcaption>
+              </figure>
+              <figure class="home-review">
+                <div class="home-review__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <h3>Easy &amp; So Nourishing</h3>
+                <blockquote>Great app that allows you to get started straight away. Affirmations &amp; journal entries really sets you up for a positive day of gratitude and self-love</blockquote>
+                <figcaption><span class="home-review__avatar" aria-hidden="true">D</span><span><strong>Dorydory68</strong><small>App Store, United Kingdom · December 2025</small></span></figcaption>
+              </figure>
+              <figure class="home-review">
+                <div class="home-review__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <h3>Effectual</h3>
+                <blockquote>Many options to give thanks; daily journaling, vision board, affirmations. It’s the total mood boosting package!</blockquote>
+                <figcaption><span class="home-review__avatar" aria-hidden="true">I</span><span><strong>Isesaisa</strong><small>App Store, Canada · January 2026</small></span></figcaption>
+              </figure>
+              <figure class="home-review">
+                <div class="home-review__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <h3>Bestie during tough times</h3>
+                <blockquote>This app really really played a part in managing my mental health when I was sailing through the storms in my life.
+Thank you to the makers.
+Much Love 🔆 ♥️</blockquote>
+                <figcaption><span class="home-review__avatar" aria-hidden="true">L</span><span><strong>Late Bloomer</strong><small>App Store, India · October 2025</small></span></figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="home-privacy home-fold" aria-labelledby="home-privacy">
+          <div class="auto__container">
+            <h2 id="home-privacy">Your journal stays yours</h2>
+            <div class="home-privacy__grid">
+              <div><h3>No account</h3><p>Open the app and start writing.</p></div>
+              <div><h3>On your device</h3><p>We don't hold your entries and can't read them.</p></div>
+              <div><h3>Your own backup</h3><p>Backup and sync go to your own Google Drive or iCloud.</p></div>
+            </div>
+            <p class="home-privacy__note">We do collect some data to run the app, including analytics, crash reports and device identifiers used for analytics and advertising. The <a href="privacy-policy.html">privacy policy</a> has the details.</p>
+          </div>
+        </section>
+
+        <section class="home-section home-fold" aria-labelledby="home-pricing">
+          <div class="auto__container">
+            <h2 id="home-pricing">Free, with an optional Pro plan</h2>
+            <div class="home-grid home-grid--two">
+              <div class="home-panel">
+                <h3>Free</h3>
+                <p class="home-plan-price">$0</p>
+                <ul>
+                  <li>Gratitude journal with prompts and reminders</li>
+                  <li>One photo per entry</li>
+                  <li>Free affirmations, plus your own</li>
+                  <li>One vision board</li>
+                  <li>Backup and sync</li>
+                </ul>
+              </div>
+              <div class="home-panel">
+                <h3>Gratitude Pro</h3>
+                <p class="home-plan-price">$39.99 a year <span>or $6.99 a month</span></p>
+                <ul>
+                  <li>Up to five photos per entry</li>
+                  <li>600+ premium affirmations</li>
+                  <li>Unlimited vision boards</li>
+                  <li>Your journal as a PDF</li>
+                  <li>More backgrounds and fonts</li>
+                </ul>
+              </div>
+            </div>
+            <p class="home-plan-note">US prices. Prices vary by country. <a href="pricing/">See pricing</a></p>
+          </div>
+        </section>
+
+        <section class="home-maker home-fold" aria-label="Who makes Gratitude">
+          <div class="auto__container">
+            <img class="home-maker__photo" src="images/pritesh-sankhe.webp" alt="Pritesh Sankhe, founder of Gratitude" width="480" height="480" loading="lazy" decoding="async" />
+            <blockquote>&ldquo;I built this app out of a personal need to cope with a tough time.&rdquo;</blockquote>
+            <p class="home-maker__name">Pritesh Sankhe, founder</p>
+            <p class="home-maker__team">Made by Hapjoy Technologies, a small team in India, since 2018.</p>
+            <p class="home-maker__links"><a href="https://apps.apple.com/us/story/id1818561810" target="_blank" rel="noopener">Our App Store feature</a><a href="https://blog.gratefulness.me/pritesh-gratitude-story/">Read the story</a></p>
+          </div>
+        </section>
+
+        <section class="home-cta home-fold-end" aria-labelledby="home-cta">
+          <div class="auto__container">
+            <h2 id="home-cta">Start with one good thing.</h2>
+            <p>Free on iPhone and Android. No account needed.</p>
+            <div class="store-buttons" role="group" aria-label="Download the Gratitude app">
+              <a id="btn-android-end" class="store-btn" href="https://play.google.com/store/apps/details?id=com.northstar.gratitude" target="_blank" rel="noopener"><img src="images/google-play.svg" alt="Get it on Google Play" width="180" height="54" loading="lazy" /></a>
+              <a id="btn-ios-end" class="store-btn" href="https://apps.apple.com/app/id1372575227" target="_blank" rel="noopener"><img src="images/app-store.svg" alt="Download on the App Store" width="180" height="54" loading="lazy" /></a>
+            </div>
+          </div>
+        </section>
+      </div>
+      </main>
       <!-- page wrapper end
     ============================================= -->
     </div>
     <!-- footer start
     ============================================= -->
-    <footer class="footer footer--home">
-        <div class="footer__art" aria-hidden="true">
-          <svg viewBox="0 0 190 120">
-            <path
-              class="footer__art-stem"
-              d="M22 106C52 91 55 53 91 47c27-5 50 10 78-24"
-            />
-            <path
-              class="footer__art-leaf"
-              d="M52 78c-21 2-30-8-32-24 18-2 31 6 32 24ZM91 47c-3-20 6-31 23-35 4 17-3 31-23 35ZM126 43c9-15 22-19 37-11-8 15-20 20-37 11Z"
-            />
-            <path
-              class="footer__art-spark"
-              d="M154 74v18M145 83h18M176 57v10M171 62h10"
-            />
-          </svg>
-        </div>
-        <div class="auto__container">
-          <div class="footer__main">
-            <div class="footer__identity">
-              <a href="/" class="footer__brand" aria-label="Gratitude home">
-                <img src="images/footer-logo.png" alt="" width="60" height="60" />
-                <span>Gratitude</span>
-              </a>
-              <div class="footer__socials" aria-label="Follow Gratitude">
-                <a
-                  href="https://www.instagram.com/gratefulness.me/"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Gratitude on Instagram"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="3" y="3" width="18" height="18" rx="5" />
-                    <circle cx="12" cy="12" r="4" />
-                    <circle class="fill" cx="17.5" cy="6.5" r="1" />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.facebook.com/gratefulness.me"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Gratitude on Facebook"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      class="fill"
-                      d="M14 8h3V4.3c-.5-.1-2.2-.3-4.1-.3C9 4 6.3 6.4 6.3 10.8V14H2v4.1h4.3V24h5.2v-5.9h4.2l.7-4.1h-4.9v-2.8C11.5 9.9 11.9 8 14 8Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://x.com/gratefulness_me"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Gratitude on X"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      class="fill"
-                      d="M18.8 2H22l-7 8 8.2 12h-6.4l-5-6.6L6 22H2.8l7.5-8.6L2.4 2H9l4.5 6 5.3-6Zm-1.1 17.9h1.8L8 4H6.1l11.6 15.9Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.youtube.com/@GratitudeChannel"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Gratitude on YouTube"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      class="fill"
-                      d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8ZM9.5 15.6V8.4l6.3 3.6-6.3 3.6Z"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <nav class="footer__column" aria-label="Support">
-              <h2>Support</h2>
-              <a href="mailto:team@gratefulness.me">Contact us</a>
-              <a href="privacy-policy.html"
-                >Privacy policy</a
-              >
-              <a href="terms-and-conditions.html"
-                >Terms of use</a
-              >
-            </nav>
-            <nav class="footer__column" aria-label="Explore">
-              <h2>Explore</h2>
-              <a href="visionboard/">Free vision board maker</a>
-              <a href="https://blog.gratefulness.me/tag/inspirational-stories/"
-                >Gratitude stories</a
-              >
-            </nav>
-            <aside class="footer__desktop-note" aria-label="Gratitude thought">
-              <span aria-hidden="true">“</span>
-              <p>Find joy in <em>little things.</em></p>
-              <svg viewBox="0 0 170 12" aria-hidden="true">
-                <path d="M3 8c38-6 95-7 164-3" />
-              </svg>
-            </aside>
-          </div>
-          <div class="footer__bottom">
-            <p>&copy; 2026 Gratitude</p>
-          </div>
-        </div>
-    </footer>
+    <footer class="footer footer--home footer--site"><div class="auto__container"><a href="/" class="footer__brand"><img src="images/footer-logo.png" alt="" width="40" height="40" /><span>Gratitude</span></a><div class="footer__grid"><nav class="footer__column" aria-label="Get the app"><h2>Get the app</h2><a href="download/">Download</a><a href="https://apps.apple.com/app/id1372575227">iPhone</a><a href="https://play.google.com/store/apps/details?id=com.northstar.gratitude">Android</a><a href="visionboard/">Free vision board maker</a></nav><nav class="footer__column" aria-label="The app"><h2>The app</h2><a href="features/">Features</a><a href="pricing/">Pricing</a><a href="affirmations/">Affirmations</a><a href="visionboard/templates">Vision board templates</a></nav><nav class="footer__column" aria-label="About"><h2>About</h2><a href="about/">About Gratitude</a><a href="https://blog.gratefulness.me/pritesh-gratitude-story/">Founder's story</a><a href="https://blog.gratefulness.me/tag/inspirational-stories/">Gratitude stories</a><a href="https://blog.gratefulness.me/">Blog</a></nav><nav class="footer__column" aria-label="Help"><h2>Help</h2><a href="https://faqs.gratefulness.me/">FAQs</a><a href="mailto:team@gratefulness.me">Contact us</a><a href="privacy-policy.html">Privacy policy</a><a href="terms-and-conditions.html">Terms of use</a></nav><nav class="footer__column" aria-label="Social"><h2>Social</h2><a href="https://www.instagram.com/gratefulness.me/">Instagram</a><a href="https://www.facebook.com/gratefulness.me">Facebook</a><a href="https://x.com/gratefulness_me">X</a><a href="https://www.youtube.com/@GratitudeChannel">YouTube</a></nav></div><div class="footer__bottom"><p>&copy; 2026 Hapjoy Technologies Pvt. Ltd.</p></div></div></footer>
     <!-- footer end
     ============================================= -->
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-    ></script>
-    <script>
-      window.addEventListener("load", function () {
-        var qrContainer = document.getElementById("download-qr");
-        var largeScreen = window.matchMedia("(min-width: 1280px)");
-
-        function renderDownloadQr() {
-          if (
-            !largeScreen.matches ||
-            !qrContainer ||
-            qrContainer.dataset.rendered ||
-            typeof window.QRCode !== "function"
-          )
-            return;
-
-          new window.QRCode(qrContainer, {
-            text: "https://www.gratefulness.me/app/",
-            width: 92,
-            height: 92,
-            colorDark: "#14181a",
-            colorLight: "#ffffff",
-            correctLevel: window.QRCode.CorrectLevel.M,
-          });
-          qrContainer.dataset.rendered = "true";
-          qrContainer.closest(".qr-download").classList.add("is-ready");
-          qrContainer.closest(".download-actions").classList.add("has-qr");
-        }
-
-        renderDownloadQr();
-        largeScreen.addEventListener("change", renderDownloadQr);
-      });
-    </script>
     <script src="/js/download.js"></script>
   </body>
 </html>
