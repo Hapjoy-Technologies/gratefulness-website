@@ -4,7 +4,7 @@ export function siteFooter(prefix = "") {
     `<nav class="footer__column" aria-label="${title}"><h2>${title}</h2>${links
       .map(([label, href]) => `<a href="${href}">${label}</a>`)
       .join("")}</nav>`;
-  return `<footer class="footer footer--home footer--site"><div class="auto__container"><a href="${prefix || "/"}" class="footer__brand"><img src="${prefix}images/footer-logo.png" alt="" width="40" height="40" /><span>Gratitude</span></a><div class="footer__grid">${[
+  return `<footer class="footer footer--home footer--site"><div class="auto__container"><a href="${prefix || "/"}" class="footer__brand"><img src="${prefix}images/logo.svg" alt="" width="40" height="40" /><span>Gratitude</span></a><div class="footer__grid">${[
     column("Get the app", [
       ["Download", `${prefix}download/`],
       ["iPhone", "https://apps.apple.com/app/id1372575227"],
