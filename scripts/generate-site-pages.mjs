@@ -13,12 +13,16 @@ const org = { "@id": `${origin}/#organization` };
 
 const stores = `<div class="store-buttons" role="group" aria-label="Download the Gratitude app"><a class="store-btn" href="${android}" target="_blank" rel="noopener"><img src="../images/google-play.svg" alt="Get it on Google Play" width="180" height="54" /></a><a class="store-btn" href="${ios}" target="_blank" rel="noopener"><img src="../images/app-store.svg" alt="Download on the App Store" width="180" height="54" /></a></div>`;
 
-const page = ({ slug, title, description, h1, intro, body, type = "WebPage", extraSchema = [], headExtra = "" }) => {
+const page = ({ slug, title, description, h1, intro, body, type = "WebPage", extraSchema = [], headExtra = "", crumb = h1 }) => {
   const url = `${origin}/${slug}/`;
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       { "@type": type, "@id": `${url}#webpage`, url, name: title, description, isPartOf: { "@id": `${origin}/#website` }, about: { "@id": `${origin}/#app` }, publisher: org },
+      { "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Gratitude", item: `${origin}/` },
+        { "@type": "ListItem", position: 2, name: crumb, item: url },
+      ] },
       ...extraSchema,
     ],
   };
@@ -97,7 +101,7 @@ const pages = [
     description: "The Gratitude app is free to download and use. Gratitude Pro costs $39.99 a year or $6.99 a month in the US, with a free trial on the yearly plan for eligible users.",
     h1: "Gratitude pricing",
     intro: "Free to download and use. Gratitude Pro is optional.",
-    extraSchema: [{ "@type": "SoftwareApplication", "@id": `${origin}/#app`, name: "Gratitude", operatingSystem: "Android, iOS", applicationCategory: "LifestyleApplication", offers: [
+    extraSchema: [{ "@type": "SoftwareApplication", "@id": `${origin}/#app`, name: "Gratitude", operatingSystem: "Android, iOS", applicationCategory: "LifestyleApplication", aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", ratingCount: "260000", bestRating: "5" }, offers: [
       { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD" },
       { "@type": "Offer", name: "Gratitude Pro yearly", price: "39.99", priceCurrency: "USD" },
       { "@type": "Offer", name: "Gratitude Pro monthly", price: "6.99", priceCurrency: "USD" },
