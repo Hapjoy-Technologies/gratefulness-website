@@ -17,6 +17,7 @@
 - [About](https://www.gratefulness.me/about/): who makes Gratitude
 - [Affirmations](https://www.gratefulness.me/affirmations/): affirmations by topic
 - [Free vision board maker](https://www.gratefulness.me/visionboard/): runs in the browser
+- [Ordinary Gold](https://www.gratefulness.me/ordinarygold/): a research-backed, hardcover guided gratitude journal from the makers of Gratitude, with ninety questions to write by hand. Reservations are open and free; it prints if 500 people reserve. ₹1,199 in India, $25 + shipping elsewhere.
 - [Blog](https://blog.gratefulness.me/): gratitude, journaling and self-care
 - [FAQs](https://faqs.gratefulness.me/)
 - [Privacy policy](https://www.gratefulness.me/privacy-policy.html)

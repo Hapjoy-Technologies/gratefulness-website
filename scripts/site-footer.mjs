@@ -16,6 +16,7 @@ export function siteFooter(prefix = "") {
       ["Pricing", `${prefix}pricing/`],
       ["Affirmations", `${prefix}affirmations/`],
       ["Vision board templates", `${prefix}visionboard/templates`],
+      ["Ordinary Gold journal", `${prefix}ordinarygold/`],
     ]),
     column("About", [
       ["About Gratitude", `${prefix}about/`],
