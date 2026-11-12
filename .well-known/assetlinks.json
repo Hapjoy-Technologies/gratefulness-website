@@ -5,5 +5,12 @@
     "package_name": "com.northstar.gratitude",
     "sha256_cert_fingerprints":
     ["71:68:CD:BF:FF:B8:CD:8C:81:BA:92:FE:E1:83:61:2A:60:96:3C:44:8C:08:9B:0C:86:73:B6:8D:93:5A:E2:DD"]
+  },
+  "relation_extensions": {
+    "delegate_permission/common.handle_all_urls": {
+      "dynamic_app_link_components": [
+        { "/": "/", "?": { "screen": "?*" } }
+      ]
+    }
   }
 }]

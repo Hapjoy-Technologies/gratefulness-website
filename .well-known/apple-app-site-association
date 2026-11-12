@@ -1,10 +1,19 @@
 {
     "applinks": {
-        "apps": [],
         "details": [
             {
-                "appID": "2CHSM8X6VD.com.northstar.gratitude",
-                "paths": [ "*" ]
+                "appIDs": [ "2CHSM8X6VD.com.northstar.gratitude" ],
+                "components": [
+                    {
+                        "/": "/journal/new",
+                        "comment": "Course journal prompt links"
+                    },
+                    {
+                        "/": "/",
+                        "?": { "screen": "?*" },
+                        "comment": "App deep links: /?screen=... (shared affirmations, gifts, emails, widgets). Every other page stays in the browser."
+                    }
+                ]
             }
         ]
     }
