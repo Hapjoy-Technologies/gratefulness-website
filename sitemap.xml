@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url><loc>https://www.gratefulness.me/</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://www.gratefulness.me/affirmations/</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://www.gratefulness.me/affirmations/be-successful/</loc><lastmod>2026-11-05</lastmod></url>
@@ -70,7 +70,19 @@
   <url><loc>https://www.gratefulness.me/affirmations/for-confidence/</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://www.gratefulness.me/ordinarygold/</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://www.gratefulness.me/visionboard/</loc><lastmod>2026-11-12</lastmod></url>
-  <url><loc>https://www.gratefulness.me/visionboard/templates</loc><lastmod>2026-11-12</lastmod></url>
+  <url>
+    <loc>https://www.gratefulness.me/visionboard/templates</loc>
+    <lastmod>2026-11-15</lastmod>
+    <image:image><image:loc>https://www.gratefulness.me/visionboard/templates/img/2027-vision-board-example-1920.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.gratefulness.me/visionboard/templates/img/printable-photo-collage-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.gratefulness.me/visionboard/templates/img/printable-life-areas-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.gratefulness.me/visionboard/templates/img/printable-goal-planner-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.gratefulness.me/visionboard/templates/img/printable-kids-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.gratefulness.me/visionboard/templates/img/vision-board-template-scrapbook-1600.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.gratefulness.me/visionboard/templates/img/vision-board-template-mosaic-1600.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.gratefulness.me/visionboard/templates/img/vision-board-template-editorial-1600.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.gratefulness.me/visionboard/templates/img/vision-board-template-doodle-1600.webp</image:loc></image:image>
+  </url>
   <url><loc>https://www.gratefulness.me/visionboard/templates/health-vision-board</loc><lastmod>2026-11-15</lastmod></url>
   <url><loc>https://www.gratefulness.me/visionboard/templates/career-vision-board</loc><lastmod>2026-11-15</lastmod></url>
   <url><loc>https://www.gratefulness.me/visionboard/templates/love-vision-board</loc><lastmod>2026-11-15</lastmod></url>
