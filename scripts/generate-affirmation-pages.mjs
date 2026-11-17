@@ -175,6 +175,8 @@ const sitemapEntries = [
   ...allCategories.map((item) => `affirmations/${item.slug}/`),
   "visionboard/",
   "visionboard/templates",
+  "visionboard/templates/kids-vision-board",
+  "visionboard/templates/student-vision-board",
   "visionboard/templates/health-vision-board",
   "visionboard/templates/career-vision-board",
   "visionboard/templates/love-vision-board",
