@@ -1,9 +1,10 @@
-// Builds /features/, /pricing/, /download/ and /about/, and applies the shared footer to the
+// Builds /features/, /pricing/, /download/, /about/ and /changelog/ (iOS + Android), and applies the shared footer to the
 // homepage and the affirmation pages. Run: node scripts/generate-site-pages.mjs
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { siteFooter } from "./site-footer.mjs";
+import * as changelog from "./changelog-data.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const origin = "https://www.gratefulness.me";
@@ -13,7 +14,8 @@ const org = { "@id": `${origin}/#organization` };
 
 const stores = `<div class="store-buttons" role="group" aria-label="Download the Gratitude app"><a class="store-btn" href="${android}" target="_blank" rel="noopener"><img src="../images/google-play.svg" alt="Get it on Google Play" width="180" height="54" /></a><a class="store-btn" href="${ios}" target="_blank" rel="noopener"><img src="../images/app-store.svg" alt="Download on the App Store" width="180" height="54" /></a></div>`;
 
-const page = ({ slug, title, description, h1, intro, body, type = "WebPage", extraSchema = [], headExtra = "", crumb = h1 }) => {
+const page = ({ slug, title, description, h1, intro, body, type = "WebPage", extraSchema = [], headExtra = "", crumb = h1, parents = [], css = "" }) => {
+  const prefix = "../".repeat(slug.split("/").length);
   const url = `${origin}/${slug}/`;
   const schema = {
     "@context": "https://schema.org",
@@ -21,7 +23,8 @@ const page = ({ slug, title, description, h1, intro, body, type = "WebPage", ext
       { "@type": type, "@id": `${url}#webpage`, url, name: title, description, isPartOf: { "@id": `${origin}/#website` }, about: { "@id": `${origin}/#app` }, publisher: org },
       { "@type": "BreadcrumbList", itemListElement: [
         { "@type": "ListItem", position: 1, name: "Gratitude", item: `${origin}/` },
-        { "@type": "ListItem", position: 2, name: crumb, item: url },
+        ...parents.map(([name, item], i) => ({ "@type": "ListItem", position: i + 2, name, item: `${origin}/${item}/` })),
+        { "@type": "ListItem", position: parents.length + 2, name: crumb, item: url },
       ] },
       ...extraSchema,
     ],
@@ -34,8 +37,8 @@ const page = ({ slug, title, description, h1, intro, body, type = "WebPage", ext
   <title>${title}</title>
   <meta name="description" content="${description}" />
   <link rel="canonical" href="${url}" />
-  <link rel="icon" type="image/png" href="../favicon.png" />
-  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="${prefix}favicon.png" />
+  <link rel="apple-touch-icon" href="${prefix}images/apple-touch-icon.png" />
   <meta name="theme-color" content="#fbeeee" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Gratitude" />
@@ -50,10 +53,10 @@ const page = ({ slug, title, description, h1, intro, body, type = "WebPage", ext
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/main.css?v=site2" />
+  <link rel="stylesheet" href="${prefix}css/main.css?v=site2" />
   <script>(function(u){var d=document.documentElement;if(/iPhone|iPad|iPod/.test(u))d.classList.add("is-ios");else if(/Android/.test(u))d.classList.add("is-android")})(navigator.userAgent)</script>
-  <link rel="stylesheet" href="../css/site.css?v=3" />
-  <link rel="stylesheet" href="../css/home.css?v=22" />
+  <link rel="stylesheet" href="${prefix}css/site.css?v=3" />
+  <link rel="stylesheet" href="${prefix}css/home.css?v=22" />${css}
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5B0WGJZT0D"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-5B0WGJZT0D");</script>
@@ -61,12 +64,12 @@ const page = ({ slug, title, description, h1, intro, body, type = "WebPage", ext
   <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
 </head>
 <body class="home-page site-page">
-  <header class="header"><div class="auto__container"><div class="header__inner"><a href="../" class="header__inner-logo" aria-label="Gratitude home"><img src="../images/logo.svg" alt="" width="46" height="46" /><span>Gratitude</span></a><nav class="header__nav" aria-label="Main navigation"><a href="../affirmations/">Affirmations</a><a href="../visionboard/">Vision board</a><a class="header__nav-cta" href="../download/">Get the app</a></nav></div></div></header>
+  <header class="header"><div class="auto__container"><div class="header__inner"><a href="${prefix}" class="header__inner-logo" aria-label="Gratitude home"><img src="${prefix}images/logo.svg" alt="" width="46" height="46" /><span>Gratitude</span></a><nav class="header__nav" aria-label="Main navigation"><a href="${prefix}affirmations/">Affirmations</a><a href="${prefix}visionboard/">Vision board</a><a class="header__nav-cta" href="${prefix}download/">Get the app</a></nav></div></div></header>
   <main class="home-sections">
     <section class="home-page-head"><div class="auto__container home-narrow"><h1>${h1}</h1><p>${intro}</p>${headExtra}</div></section>
 ${body}
   </main>
-  ${siteFooter("../")}
+  ${siteFooter(prefix)}
 </body>
 </html>
 `;
@@ -141,6 +144,65 @@ const pages = [
     ].join("\n"),
   },
 ];
+
+// What's new: /changelog/ plus one page per platform, built from scripts/changelog-data.mjs.
+const platforms = {
+  ios: { name: "iPhone", label: "iOS", store: ios, storeName: "App Store", other: "android", releases: changelog.ios },
+  android: { name: "Android", label: "Android", store: android, storeName: "Google Play", other: "ios", releases: changelog.android },
+};
+// "2026-01-28" → January 28, 2026; "2025-09" → September 2025. Ranges share the year when they can.
+const dateParts = (d) => {
+  const [y, m, day] = d.split("-").map(Number);
+  return { y, day, month: new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString("en-US", { month: "long", timeZone: "UTC" }) };
+};
+const dayMonth = ({ month, day }) => (day ? `${month} ${day}` : month);
+const releaseDate = (from, until) => {
+  const a = dateParts(from);
+  if (!until) return a.day ? `${dayMonth(a)}, ${a.y}` : `${a.month} ${a.y}`;
+  const b = dateParts(until);
+  const end = b.day ? `${dayMonth(b)}, ${b.y}` : `${b.month} ${b.y}`;
+  if (a.y === b.y && a.month === b.month && a.day && b.day) return `${a.month} ${a.day} – ${b.day}, ${b.y}`;
+  if (a.y === b.y) return `${dayMonth(a)} – ${end}`;
+  return `${a.day ? `${dayMonth(a)}, ${a.y}` : `${a.month} ${a.y}`} – ${end}`;
+};
+const versionId = (v) => `v${v.split(" ")[0].replace(/\./g, "-")}`;
+const releaseMeta = (r) => `<p class="cl-meta"><span class="cl-version">${r.version}</span><time datetime="${r.date}">${releaseDate(r.date, r.until)}</time>${r.status ? `<span class="cl-status">${r.status}</span>` : ""}</p>`;
+const releaseShot = (r) => (r.image ? `<figure class="cl-shot"><img src="../../images/changelog/${r.image}.webp" alt="${r.alt}" width="1600" height="1000" loading="lazy" decoding="async" /></figure>` : "");
+const release = (r) => `<article class="cl-release" id="${versionId(r.version)}">${releaseMeta(r)}<h2><a href="#${versionId(r.version)}">${r.title}</a></h2>${releaseShot(r)}<p class="cl-summary">${r.summary}</p>${r.items.length ? `<ul>${r.items.map((i) => `<li>${i}</li>`).join("")}</ul>` : ""}</article>`;
+const changelogCss = (prefix) => `<link rel="stylesheet" href="${prefix}css/changelog.css?v=3" />`;
+const platformSwitch = (current) => `<nav class="cl-switch" aria-label="Platform">${Object.entries(platforms).map(([key, p]) => key === current ? `<span aria-current="page">${p.name}</span>` : `<a href="../${key}/">${p.name}</a>`).join("")}</nav>`;
+const changelogPages = [
+  {
+    slug: "changelog",
+    title: "What's New in Gratitude: iPhone and Android Updates",
+    description: "Every update to the Gratitude app on iPhone and Android: new features, improvements and fixes, newest first.",
+    h1: "What's new in Gratitude",
+    intro: "Every update to the app, newest first.",
+    crumb: "What's new",
+    css: changelogCss("../"),
+    body: `    <section class="home-section" aria-label="Platforms"><div class="auto__container"><div class="cl-platforms">${Object.entries(platforms).map(([key, p]) => {
+      const latest = p.releases[0];
+      return `<a class="cl-platform" href="${key}/"><span class="cl-platform__name">${p.name}</span>${releaseMeta(latest)}<span class="cl-platform__title">${latest.title}</span><span class="cl-platform__more">All ${p.name} updates <span aria-hidden="true">→</span></span></a>`;
+    }).join("")}</div></div></section>`,
+  },
+  ...Object.entries(platforms).map(([key, p]) => ({
+    slug: `changelog/${key}`,
+    title: `What's New in Gratitude for ${p.name}: ${p.label === p.name ? "" : `${p.label} `}Release Notes`,
+    description: `Every update to the Gratitude app on ${p.name}, newest first: new features, improvements and fixes, from version ${p.releases.at(-1).version.split(" ")[0]} to ${p.releases[0].version}.`,
+    h1: `What's new on ${p.name}`,
+    intro: `Every update to Gratitude on ${p.name}, newest first.`,
+    headExtra: platformSwitch(key),
+    crumb: p.name,
+    parents: [["What's new", "changelog"]],
+    type: "CollectionPage",
+    css: changelogCss("../../"),
+    body: [
+      `    <section class="home-section cl-list" aria-label="${p.name} updates"><div class="auto__container home-narrow">${p.releases.map(release).join("")}<p class="cl-note">Small updates with fixes only are grouped together. Looking for the ${platforms[p.other].name} app? See <a href="../${p.other}/">${platforms[p.other].name} updates</a>.</p></div></section>`,
+      `    <section class="home-cta" aria-labelledby="cta"><div class="auto__container"><h2 id="cta">Get the latest version.</h2><p>Free on the ${p.storeName}.</p><div class="store-buttons" role="group" aria-label="Download the Gratitude app"><a class="store-btn" href="${p.store}" target="_blank" rel="noopener"><img src="../../images/${key === "ios" ? "app-store" : "google-play"}.svg" alt="${key === "ios" ? "Download on the App Store" : "Get it on Google Play"}" width="180" height="54" /></a></div></div></section>`,
+    ].join("\n"),
+  })),
+];
+pages.push(...changelogPages);
 
 for (const p of pages) {
   const dir = path.join(root, p.slug);

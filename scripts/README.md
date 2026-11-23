@@ -15,3 +15,10 @@ Deployment review: the repository has GitHub Pages enabled and a CNAME of www.gr
 `node scripts/generate-site-pages.mjs` builds `/features/`, `/pricing/`, `/download/` and `/about/`, and applies the shared footer (`scripts/site-footer.mjs`) and main navigation to the homepage and affirmation pages. Unlike the affirmation generator, it doesn't need the `gratitude-static-content` checkout.
 
 Run `generate-site-pages.mjs` after `generate-affirmation-pages.mjs`: it also applies the shared style to the affirmation pages.
+
+## What's new (changelog)
+
+`/changelog/`, `/changelog/ios/` and `/changelog/android/` are built by `generate-site-pages.mjs` from `scripts/changelog-data.mjs`. To add a release, put a new entry at the top of its platform's list and run `node scripts/generate-site-pages.mjs`.
+
+- Dates: iOS from the App Store version history (apps.apple.com page) or the first day a version shows as an update (7F) in the daily sales report; Android from the "Release date" line of the GitHub release.
+- Images (optional): real app screenshots on a brand colour, 1600×1000 WebP in `images/changelog/`. Make one with `python3 scripts/changelog/collage.py images/changelog/<name>.webp "#fff5cc" shot1.png [shot2.png]` (needs Pillow), then set `image` and `alt` on the entry.
