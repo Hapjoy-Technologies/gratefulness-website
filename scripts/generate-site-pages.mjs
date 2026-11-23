@@ -12,7 +12,15 @@ const ios = "https://apps.apple.com/app/id1372575227";
 const android = "https://play.google.com/store/apps/details?id=com.northstar.gratitude";
 const org = { "@id": `${origin}/#organization` };
 
-const stores = `<div class="store-buttons" role="group" aria-label="Download the Gratitude app"><a class="store-btn" href="${android}" target="_blank" rel="noopener"><img src="../images/google-play.svg" alt="Get it on Google Play" width="180" height="54" /></a><a class="store-btn" href="${ios}" target="_blank" rel="noopener"><img src="../images/app-store.svg" alt="Download on the App Store" width="180" height="54" /></a></div>`;
+// Store badges. `prefix` is the path to the site root; `extra` adds attributes to each <img>.
+const storeLinks = {
+  android: (prefix, extra) => `<a class="store-btn" href="${android}" target="_blank" rel="noopener"><img src="${prefix}images/google-play.svg" alt="Get it on Google Play" width="180" height="54"${extra} /></a>`,
+  ios: (prefix, extra) => `<a class="store-btn" href="${ios}" target="_blank" rel="noopener"><img src="${prefix}images/app-store.svg" alt="Download on the App Store" width="180" height="54"${extra} /></a>`,
+};
+const storeButtons = (prefix, stores = ["android", "ios"], extra = "") => `<div class="store-buttons" role="group" aria-label="Download the Gratitude app">${stores.map((s) => storeLinks[s](prefix, extra)).join("")}</div>`;
+const stores = storeButtons("../");
+// Escapes text for use inside a double-quoted HTML attribute.
+const attr = (text) => String(text).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 
 const page = ({ slug, title, description, h1, intro, body, type = "WebPage", extraSchema = [], headExtra = "", crumb = h1, parents = [], css = "" }) => {
   const prefix = "../".repeat(slug.split("/").length);
@@ -35,15 +43,15 @@ const page = ({ slug, title, description, h1, intro, body, type = "WebPage", ext
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title}</title>
-  <meta name="description" content="${description}" />
+  <meta name="description" content="${attr(description)}" />
   <link rel="canonical" href="${url}" />
   <link rel="icon" type="image/png" href="${prefix}favicon.png" />
   <link rel="apple-touch-icon" href="${prefix}images/apple-touch-icon.png" />
   <meta name="theme-color" content="#fbeeee" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Gratitude" />
-  <meta property="og:title" content="${title}" />
-  <meta property="og:description" content="${description}" />
+  <meta property="og:title" content="${attr(title)}" />
+  <meta property="og:description" content="${attr(description)}" />
   <meta property="og:url" content="${url}" />
   <meta property="og:image" content="${origin}/images/og-gratitude-v2.jpg" />
   <meta property="og:image:width" content="2400" />
@@ -147,8 +155,8 @@ const pages = [
 
 // What's new: /changelog/ plus one page per platform, built from scripts/changelog-data.mjs.
 const platforms = {
-  ios: { name: "iPhone", label: "iOS", store: ios, storeName: "App Store", other: "android", releases: changelog.ios },
-  android: { name: "Android", label: "Android", store: android, storeName: "Google Play", other: "ios", releases: changelog.android },
+  ios: { name: "iPhone", label: "iOS", storeName: "App Store", other: "android", releases: changelog.ios },
+  android: { name: "Android", label: "Android", storeName: "Google Play", other: "ios", releases: changelog.android },
 };
 // "2026-01-28" → January 28, 2026; "2025-09" → September 2025. Ranges share the year when they can.
 const dateParts = (d) => {
@@ -166,10 +174,26 @@ const releaseDate = (from, until) => {
   return `${a.day ? `${dayMonth(a)}, ${a.y}` : `${a.month} ${a.y}`} – ${end}`;
 };
 const versionId = (v) => `v${v.split(" ")[0].replace(/\./g, "-")}`;
+// Stop the build on bad release data instead of shipping a broken page.
+for (const [key, p] of Object.entries(platforms)) {
+  const ids = new Set();
+  for (const r of p.releases) {
+    const where = `changelog ${key} ${r.version}`;
+    const id = versionId(r.version);
+    if (ids.has(id)) throw new Error(`${where}: duplicate anchor #${id}`);
+    ids.add(id);
+    for (const d of [r.date, r.until].filter(Boolean)) if (!/^\d{4}-\d{2}(-\d{2})?$/.test(d)) throw new Error(`${where}: date "${d}" isn't YYYY-MM or YYYY-MM-DD`);
+    if (r.until && r.until < r.date) throw new Error(`${where}: until is before date`);
+    if (!r.title || !r.summary || !Array.isArray(r.items)) throw new Error(`${where}: needs title, summary and items`);
+    if (r.image && !r.alt) throw new Error(`${where}: image needs alt text`);
+    if (r.image && !fs.existsSync(path.join(root, "images", "changelog", `${r.image}.webp`))) throw new Error(`${where}: images/changelog/${r.image}.webp not found`);
+  }
+}
 const releaseMeta = (r) => `<p class="cl-meta"><span class="cl-version">${r.version}</span><time datetime="${r.date}">${releaseDate(r.date, r.until)}</time>${r.status ? `<span class="cl-status">${r.status}</span>` : ""}</p>`;
-const releaseShot = (r) => (r.image ? `<figure class="cl-shot"><img src="../../images/changelog/${r.image}.webp" alt="${r.alt}" width="1600" height="1000" loading="lazy" decoding="async" /></figure>` : "");
-const release = (r) => `<article class="cl-release" id="${versionId(r.version)}">${releaseMeta(r)}<h2><a href="#${versionId(r.version)}">${r.title}</a></h2>${releaseShot(r)}<p class="cl-summary">${r.summary}</p>${r.items.length ? `<ul>${r.items.map((i) => `<li>${i}</li>`).join("")}</ul>` : ""}</article>`;
-const changelogCss = (prefix) => `<link rel="stylesheet" href="${prefix}css/changelog.css?v=3" />`;
+// The first image on a page is usually on screen at load, so only later ones are lazy.
+const releaseShot = (r, eager) => (r.image ? `<figure class="cl-shot"><img src="../../images/changelog/${r.image}.webp" alt="${attr(r.alt)}" width="1600" height="1000"${eager ? "" : ' loading="lazy"'} decoding="async" /></figure>` : "");
+const release = (r, eager) => `<article class="cl-release" id="${versionId(r.version)}">${releaseMeta(r)}<h2><a href="#${versionId(r.version)}">${r.title}</a></h2>${releaseShot(r, eager)}<p class="cl-summary">${r.summary}</p>${r.items.length ? `<ul>${r.items.map((i) => `<li>${i}</li>`).join("")}</ul>` : ""}</article>`;
+const changelogCss = (prefix) => `<link rel="stylesheet" href="${prefix}css/changelog.css?v=4" />`;
 const platformSwitch = (current) => `<nav class="cl-switch" aria-label="Platform">${Object.entries(platforms).map(([key, p]) => key === current ? `<span aria-current="page">${p.name}</span>` : `<a href="../${key}/">${p.name}</a>`).join("")}</nav>`;
 const changelogPages = [
   {
@@ -197,8 +221,8 @@ const changelogPages = [
     type: "CollectionPage",
     css: changelogCss("../../"),
     body: [
-      `    <section class="home-section cl-list" aria-label="${p.name} updates"><div class="auto__container home-narrow">${p.releases.map(release).join("")}<p class="cl-note">Small updates with fixes only are grouped together. Looking for the ${platforms[p.other].name} app? See <a href="../${p.other}/">${platforms[p.other].name} updates</a>.</p></div></section>`,
-      `    <section class="home-cta" aria-labelledby="cta"><div class="auto__container"><h2 id="cta">Get the latest version.</h2><p>Free on the ${p.storeName}.</p><div class="store-buttons" role="group" aria-label="Download the Gratitude app"><a class="store-btn" href="${p.store}" target="_blank" rel="noopener"><img src="../../images/${key === "ios" ? "app-store" : "google-play"}.svg" alt="${key === "ios" ? "Download on the App Store" : "Get it on Google Play"}" width="180" height="54" /></a></div></div></section>`,
+      `    <section class="home-section cl-list" aria-label="${p.name} updates"><div class="auto__container home-narrow">${p.releases.map((r, i) => release(r, i === p.releases.findIndex((x) => x.image))).join("")}<p class="cl-note">Small updates with fixes only are grouped together. Looking for the ${platforms[p.other].name} app? See <a href="../${p.other}/">${platforms[p.other].name} updates</a>.</p></div></section>`,
+      `    <section class="home-cta" aria-labelledby="cta"><div class="auto__container"><h2 id="cta">Get the latest version.</h2><p>Free on the ${p.storeName}.</p>${storeButtons("../../", [key])}</div></section>`,
     ].join("\n"),
   })),
 ];
@@ -219,7 +243,6 @@ const apply = (file, prefix) => {
 };
 // Brings the output of generate-affirmation-pages.mjs in line with the shared style. Safe to run repeatedly.
 const FONTS = "family=Inter:wght@400;500;600;700;800&amp;family=Lora:wght@400..700&amp;display=swap";
-const storeButtons = (prefix) => `<div class="store-buttons" role="group" aria-label="Download the Gratitude app"><a class="store-btn" href="${android}" target="_blank" rel="noopener"><img src="${prefix}images/google-play.svg" alt="Get it on Google Play" width="180" height="54" loading="lazy" /></a><a class="store-btn" href="${ios}" target="_blank" rel="noopener"><img src="${prefix}images/app-store.svg" alt="Download on the App Store" width="180" height="54" loading="lazy" /></a></div>`;
 const applyAffirmationStyle = (file, prefix, hub) => {
   let html = fs.readFileSync(file, "utf8");
   html = html.replace(/family=Inter:wght@[^"]*display=swap/, FONTS);
@@ -234,7 +257,7 @@ const applyAffirmationStyle = (file, prefix, hub) => {
   html = html.replace(/<body class="[^"]*"[^>]*>/, hub ? `<body class="site-page affirmations-page">` : `<body class="site-page affirmations-page detail-page"${folder ? ` style="--folder:${folder[1]}"` : ""}>`);
   if (hub) {
     html = html.replace(/<section class="aff-hero"[\s\S]*?<\/section>/, `<section class="aff-hero" aria-labelledby="page-title"><div class="auto__container aff-hero__inner"><div class="aff-hero__content"><h1 id="page-title">Positive affirmations for every part of you</h1><p class="aff-hero__intro">Choose what you need today, and take it at your own pace.</p><a class="aff-primary" href="#affirmation-library">Explore affirmations <span aria-hidden="true">↓</span></a></div><div class="aff-hero__phones" aria-hidden="true"><figure class="home-phone"><img src="${prefix}images/app/affirmations-folders.webp" alt="" width="603" height="1311" fetchpriority="high" /></figure><figure class="home-phone"><img src="${prefix}images/app/affirmations-sleep-better-folder.webp" alt="" width="603" height="1311" /></figure></div></div></section>`);
-    html = html.replace(/<section class="(?:aff-cta|home-cta)"[\s\S]*?<\/section>/, `<section class="home-cta" aria-labelledby="aff-cta-title"><div class="auto__container"><h2 id="aff-cta-title">Carry these words with you.</h2><p>Listen, write your own and add music in the free app.</p>${storeButtons(prefix)}</div></section>`);
+    html = html.replace(/<section class="(?:aff-cta|home-cta)"[\s\S]*?<\/section>/, `<section class="home-cta" aria-labelledby="aff-cta-title"><div class="auto__container"><h2 id="aff-cta-title">Carry these words with you.</h2><p>Listen, write your own and add music in the free app.</p>${storeButtons(prefix, undefined, ' loading="lazy"')}</div></section>`);
   }
   fs.writeFileSync(file, html);
 };

@@ -20,5 +20,7 @@ Run `generate-site-pages.mjs` after `generate-affirmation-pages.mjs`: it also ap
 
 `/changelog/`, `/changelog/ios/` and `/changelog/android/` are built by `generate-site-pages.mjs` from `scripts/changelog-data.mjs`. To add a release, put a new entry at the top of its platform's list and run `node scripts/generate-site-pages.mjs`.
 
+- While a Play release is staged, set `status: "Rolling out"`. Remove it when the rollout reaches 100%.
+- The build stops with an error on bad release data: a malformed date, an image without alt text or file, or two releases with the same anchor.
 - Dates: iOS from the App Store version history (apps.apple.com page) or the first day a version shows as an update (7F) in the daily sales report; Android from the "Release date" line of the GitHub release.
 - Images (optional): real app screenshots on a brand colour, 1600×1000 WebP in `images/changelog/`. Make one with `python3 scripts/changelog/collage.py images/changelog/<name>.webp "#fff5cc" shot1.png [shot2.png]` (needs Pillow), then set `image` and `alt` on the entry.

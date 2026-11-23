@@ -121,10 +121,9 @@
   padding: 32px;
   border-radius: 20px;
   background: var(--butter);
-  color: var(--ink);
-  text-decoration: none;
   transition: transform 0.15s ease;
 }
+/* Beats the site's default link colour and underline, for the card and everything in it. */
 .site-page a.cl-platform,
 .site-page a.cl-platform * {
   color: var(--ink);

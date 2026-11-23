@@ -1,4 +1,5 @@
-# Usage: collage.py out.webp "#bg" shot1.png [shot2.png ...]
+# Usage: collage.py out.webp "#bg" shot1.png [shot2.png [shot3.png]]
+# 1600x1000 WebP: phone screenshots on a brand colour, running off the bottom edge.
 import sys
 from PIL import Image, ImageDraw, ImageFilter
 out, bg, shots = sys.argv[1], sys.argv[2], sys.argv[3:]
@@ -16,9 +17,14 @@ for f in shots:
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, ph - 1], r, fill=255)
     phones.append((im, mask))
 total = sum(p[0].width for p in phones) + gap * (len(phones) - 1)
+if total > W - 160:  # three phones: shrink them all to fit the width
+    k = (W - 160 - gap * (len(phones) - 1)) / (total - gap * (len(phones) - 1))
+    phones = [(im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS), m.resize((round(m.width * k), round(m.height * k)))) for im, m in phones]
+    total = sum(p[0].width for p in phones) + gap * (len(phones) - 1)
 x = (W - total) // 2
 y = 84
 for im, mask in phones:
+    ph = im.height
     sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     ImageDraw.Draw(sh).rounded_rectangle([x, y + 14, x + im.width, y + ph + 14], 44, fill=(46, 36, 64, 60))
     sh = sh.filter(ImageFilter.GaussianBlur(22))
