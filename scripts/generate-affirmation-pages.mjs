@@ -195,6 +195,9 @@ const sitemapEntries = [
   "pricing/",
   "download/",
   "about/",
+  "changelog/",
+  "changelog/ios/",
+  "changelog/android/",
   "privacy-policy.html",
   "terms-and-conditions.html",
 ];

@@ -14,6 +14,7 @@ export function siteFooter(prefix = "") {
     column("The app", [
       ["Features", `${prefix}features/`],
       ["Pricing", `${prefix}pricing/`],
+      ["What's new", `${prefix}changelog/`],
       ["Affirmations", `${prefix}affirmations/`],
       ["Vision board templates", `${prefix}visionboard/templates`],
       ["Ordinary Gold journal", `${prefix}ordinarygold/`],
